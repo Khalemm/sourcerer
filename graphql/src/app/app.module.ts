@@ -1,20 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import {APOLLO_OPTIONS} from 'apollo-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GraphQLModule } from './graphql.module';
-import { HttpClientModule } from '@angular/common/http';
-import { APOLLO_OPTIONS } from 'apollo-angular';
 import {HttpLink} from 'apollo-angular/http';
-import {InMemoryCache} from '@apollo/client/core';
-import { TestComponent } from './test/test.component';
+import {createHttpLink, InMemoryCache} from '@apollo/client/core'
+import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { FirstqueryComponent } from './firstquery/firstquery.component';
+
+
+const gitToken ='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';
+
+const gitUri = 'https://api.github.com/graphql'; // <-- add the URL of the GraphQL server here => https://github.com/settings/tokens
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
     FirstqueryComponent
   ],
   imports: [
@@ -27,11 +30,13 @@ import { FirstqueryComponent } from './firstquery/firstquery.component';
     {
       provide: APOLLO_OPTIONS,
       useFactory: (httpLink: HttpLink) => {
+        const cache = new InMemoryCache();
         return {
-          cache: new InMemoryCache(),
           link: httpLink.create({
-            uri: 'https://api.github.com/graphql',
+            uri: "https://api.github.com/graphql",
+            headers:new HttpHeaders().set('Authorization',`Bearer ${gitToken}` )
           }),
+          cache
         };
       },
       deps: [HttpLink],
