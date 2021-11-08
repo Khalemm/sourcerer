@@ -8,7 +8,10 @@ import { GraphQLModule } from './graphql.module';
 import {HttpLink} from 'apollo-angular/http';
 import {createHttpLink, InMemoryCache} from '@apollo/client/core'
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
-import { FirstqueryComponent } from './firstquery/firstquery.component';
+import { EnTeteComponent } from './en-tete/en-tete.component';
+import { OverviewComponent } from './overview/overview.component';
+import { LanguagesComponent } from './languages/languages.component';
+import { CommitsComponent } from './commits/commits.component';
 
 
 const gitToken ='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';
@@ -18,7 +21,10 @@ const gitUri = 'https://api.github.com/graphql'; // <-- add the URL of the Graph
 @NgModule({
   declarations: [
     AppComponent,
-    FirstqueryComponent
+    EnTeteComponent,
+    OverviewComponent,
+    LanguagesComponent,
+    CommitsComponent
   ],
   imports: [
     BrowserModule,

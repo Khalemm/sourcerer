@@ -1,0 +1,45 @@
+.image-name img{
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+}
+.image-name {
+    display: flex;
+}
+.name{
+    margin-top: 15px;
+    margin-left: 50px;
+}
+.infos{
+    margin-top: 15px;
+    margin-right: 20px;
+    text-align: end;
+    width: 100%;
+}
+.presentation {
+    display: flex;
+    background-color: bisque;
+    border-radius: 30px;
+    width: 100%;
+    margin-left: 20px;
+}
+.bio{
+    background-color: #efefef;
+    border-radius: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-top: 20px;
+}
+.block-contenu{
+    display: flex;
+}
+.block{
+    background-color:lightblue;
+    border-radius: 30px;
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+}
