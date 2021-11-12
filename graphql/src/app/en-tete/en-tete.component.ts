@@ -8,11 +8,17 @@ import { Apollo,gql } from 'apollo-angular';
 })
 export class EnTeteComponent implements OnInit {
   user: any | undefined;
+  countCommits: any[] = [];
+  countCommit: number | undefined;
   loading = true;
   error: any;
   constructor(private apollo: Apollo) { }
   
   ngOnInit(): void {
+    this.userQuery();
+    console.log(this.user);
+  }
+  userQuery(){
     this.apollo
     .watchQuery({
       query: gql`
@@ -34,8 +40,20 @@ export class EnTeteComponent implements OnInit {
             totalCount
           }
           company
-          repositories{
+          repositories(first: 100) {
             totalCount
+            nodes {
+              name
+              defaultBranchRef {
+                target {
+                  ... on Commit {
+                    history{
+                      totalCount
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -43,6 +61,10 @@ export class EnTeteComponent implements OnInit {
     })
     .valueChanges.subscribe((result: any) => {
       this.user = result?.data?.user;
+      for(let i=0; i< Object.keys(this.user["repositories"]["nodes"]).length; i++) {
+        this.countCommits.push(this.user["repositories"]["nodes"][i]["defaultBranchRef"]["target"]["history"]["totalCount"])
+      } 
+      this.countCommit = eval(this.countCommits.join("+"))
       this.error = result.error;
       this.loading = result.loading;
     });

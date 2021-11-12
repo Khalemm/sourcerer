@@ -1,0 +1,33 @@
+<ng-container *ngIf="repositories">
+    <div class="repositories">
+        <div class="entete">
+            <h2>Repositories</h2>
+            <p>{{repositories.repositories.totalCount}} public repos</p>
+        </div>
+        <div *ngFor="let repo of repositories.repositories.nodes">
+            <div class="repo">
+                <div class="left">
+                    <p>{{repo.name}}</p>
+                    <p>{{repo.url}}</p>
+                </div>
+                <div class="mid">
+                    <p>nb collab : {{repo.collaborators.totalCount}}</p>
+                    <p>nb commit : {{repo.defaultBranchRef.target.history.totalCount}}</p>
+                </div>
+                <div class="right">
+                    <p>création : {{repo.createdAt}}</p>
+                    <p>dernière modif : {{repo.updatedAt}}</p>
+                </div>
+            </div>
+            <div class="languages">
+                <div *ngFor="let languages of repo.defaultBranchRef.target.repository.languages.nodes">
+                    <div class="lang">
+                        <div class="dot" style="background-color: {{languages.color}};"></div>
+                        <p><b>{{languages.name}}</b></p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

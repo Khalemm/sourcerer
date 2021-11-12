@@ -12,9 +12,11 @@ import { EnTeteComponent } from './en-tete/en-tete.component';
 import { OverviewComponent } from './overview/overview.component';
 import { LanguagesComponent } from './languages/languages.component';
 import { CommitsComponent } from './commits/commits.component';
+import { RepositoriesComponent } from './repositories/repositories.component';
+import { environment } from 'src/environments/environment';
 
 
-const gitToken ='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';
+const gitToken =environment.gitToken;
 
 const gitUri = 'https://api.github.com/graphql'; // <-- add the URL of the GraphQL server here => https://github.com/settings/tokens
 
@@ -24,7 +26,8 @@ const gitUri = 'https://api.github.com/graphql'; // <-- add the URL of the Graph
     EnTeteComponent,
     OverviewComponent,
     LanguagesComponent,
-    CommitsComponent
+    CommitsComponent,
+    RepositoriesComponent
   ],
   imports: [
     BrowserModule,
